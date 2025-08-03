@@ -45,30 +45,15 @@ We unify the text embedding objectives into three major modeling optimization is
 ### Training Objectives
 
 - Retrieval: Apply InfoNCE contrastive loss function, and follow the gte/qwen3-embedding to add the query-query negative as part of the denominator.<br>
-$$
-L_{ret}=-\frac{1}{n}\sum_{i} log{\frac{e^{sim(q_i,d_i^+)/\tau}}{e^{sim(q_i,d_i^+)/\tau}+\sum_{j}e^{sim(q_i,d_j^-)/\tau}+\sum_{j≠i}e^{sim(q_i,q_j)/\tau}}}
-$$
+<div align="center"><img src="assets/formula1.png" width="700" height="110"></img></div>
 
 - STS：Apply Cosent loss：
-$$
-L_{cosent}=log \bigg(1+\sum_{sim(i,j)>sim(k,l)}exp(\frac{sim(x_k, x_l)-sim(x_i,x_j)}{\tau})\bigg)
-$$
+<div align="center"><img src="assets/formula2.png" width="700" height="110"></img></div>
 
 - CLS: Apply the same InfoNCE loss as retrieval, but for In-Batch Negative, due to the high probability of same-class conflicts, a mask mechanism is used to cover up similar samples in negative examples shared by different samples.
-$$
-L_{ret}=-\frac{1}{n}\sum_{i} log{\frac{e^{sim(t_i,t_i^+)/\tau}}{e^{sim(t_i,t_i^+)/\tau}+\sum_{n}MASK(t_i,t_{i,n}^-)·e^{sim(t_i,t_{i,n}^-)/\tau}+\sum_{j≠i}MASK(t_i,t_j)·e^{sim(t_i,t_j)/\tau}+\sum_{j≠i}\sum_{n}MASK(t_i,t_{j,n}^-)e^{sim(t_i,t_{j,n}^-)/\tau}}}
-$$
-$$
-where\:\:C_{t_i}=C_{t_i^+}
-$$
-$$
-MASK(t_i, t_j)=
-\begin{cases}
-0 & \quad \text{if } C_{t_i}=C_{t_j}, \\
-1 & \quad \text{otherwise}
-\end{cases}
-$$
+<div align="center"><img src="assets/formula3.png" width="1100" height="180"></img></div>
 Where $C_{t_i}$ represents the class label of sample $t_i$ , and $n$ is the number of negative samples for a single data point.
+
 ### Feature Enhancement Data Synthesis Technology
 In the context of powerful languages and writing capabilities in LLMs, we've fully leveraged the LLMs API to propose a data synthesis technology. To address issues like limited data and narrow topics/features in training sets, we've proposed rewriting and expanding synthesis techniques. Furthermore, to increase the difficulty of negative examples during training, we've designed a hard negative example synthesis technology based on big models, combined with existing strong retriever-based hard negative examples sampling. Several of these technologies are described below:
 <div align="center"><img src="assets/image-9.png" width="930" height="290"></img></div>

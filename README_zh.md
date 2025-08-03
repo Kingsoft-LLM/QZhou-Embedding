@@ -46,29 +46,13 @@ tags:
 ### 训练目标
 
 - 检索：使用InfoNCE对比学习loss函数，效仿gte/qwen3-embedding的改进增加q-q对负样例惩罚<br>
-$$
-L_{ret}=-\frac{1}{n}\sum_{i} log{\frac{e^{sim(q_i,d_i^+)/\tau}}{e^{sim(q_i,d_i^+)/\tau}+\sum_{j}e^{sim(q_i,d_j^-)/\tau}+\sum_{j≠i}e^{sim(q_i,q_j)/\tau}}}
-$$
+<div align="center"><img src="assets/formula1.png" width="700" height="110"></img></div>
 
 - STS：使用Cosent loss：
-$$
-L_{cosent}=log \bigg(1+\sum_{sim(i,j)>sim(k,l)}exp(\frac{sim(x_k, x_l)-sim(x_i,x_j)}{\tau})\bigg)
-$$
+<div align="center"><img src="assets/formula2.png" width="700" height="110"></img></div>
 
 - CLS：同检索一致使用InfoNCE loss，但In-Batch Negative时由于同类冲突概率大，使用mask机制掩盖不同样本共享的负样例中的同类样本。
-$$
-L_{ret}=-\frac{1}{n}\sum_{i} log{\frac{e^{sim(t_i,t_i^+)/\tau}}{e^{sim(t_i,t_i^+)/\tau}+\sum_{n}MASK(t_i,t_{i,n}^-)·e^{sim(t_i,t_{i,n}^-)/\tau}+\sum_{j≠i}MASK(t_i,t_j)·e^{sim(t_i,t_j)/\tau}+\sum_{j≠i}\sum_{n}MASK(t_i,t_{j,n}^-)e^{sim(t_i,t_{j,n}^-)/\tau}}}
-$$
-$$
-其中C_{t_i}=C_{t_i^+}
-$$
-$$
-MASK(t_i, t_j)=
-\begin{cases}
-0 & \quad \text{if } C_{t_i}=C_{t_j}, \\
-1 & \quad \text{otherwise}
-\end{cases}
-$$
+<div align="center"><img src="assets/formula3.png" width="1100" height="180"></img></div>
 其中${C_{t_i}}$表示样本${t_i}$的类标签，n是单条数据的负样本数。
 
 ### 特征增强数据合成技术

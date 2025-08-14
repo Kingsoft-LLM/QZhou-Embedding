@@ -7,7 +7,6 @@ from sentence_transformers import SentenceTransformer
 
 
 ### Sentence-transformers
-model = SentenceTransformer("Kingsoft-LLM/QZhou-Embedding")
 
 model = SentenceTransformer(
     "Kingsoft-LLM/QZhou-Embedding",

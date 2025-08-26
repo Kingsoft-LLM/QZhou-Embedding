@@ -44,7 +44,7 @@ We provide detailed parameters and environment configurations so that you can ru
 #### Transformers model load arguments
 torch_dtype=torch.bfloat16<br>
 attn_implementation='sdpa'<br>
-**NOTE：** The ranking results use the sdpa mode. Other modes ('eager', 'flash_attention_2') may have deviations in results, but still keep the overall performance consistent.
+**NOTE：** **NOTE：** The leaderboard evaluation results were obtained using "sdpa" mode. Other modes ('eager', 'flash_attention_2') may vary in results, but still keep the overall performance consistent.
 #### Instruction Adding Rules
 Details can be found on our <a href="https://github.com/Kingsoft-LLM/QZhou-Embedding">GitHub</a>.
 #### Evaluation code usage

@@ -29,6 +29,10 @@ For the Qwen base model, we implemented the following modifications:
 1. Replaced causal attention with bidirectional attention and constructed a new QZhouModel module based on Qwen2Model;
 2. Modified the tokenizer's padding_side to "left".
 
+## MTEB/CMTEB Results
+<img src="assets/image-2.png" width="800" height="300"></img>
+
+
 ## Usage
 ### Completely reproduce the benchmark results
 We provide detailed parameters and environment configurations so that you can run results that are completely consistent with the mteb leaderboard on your own machine, including configurations such as environment dependencies and model arguments.
@@ -157,4 +161,24 @@ embeddings = mean_pool(outputs.last_hidden_state, batch_dict['attention_mask'])
 
 embeddings = F.normalize(embeddings, p=2, dim=1)
 scores = (embeddings[:2] @ embeddings[2:].T)
+```
+### FAQs
+**1. Does the model support MRL?**<br>
+The model currently does not support MRL in this release due to observed performance degradation.<br>
+**2. Why not build upon the Qwen3 series models?**<br>
+Our initial research experiments commenced prior to the release of Qwen3. To maintain our experimental consistency, we retained the original base model throughout the study😊😊😊. While we subsequently conducted first-stage (retrieval) training with Qwen3, the performance after 32k steps showed no significant improvement over Qwen2.5, leading to discontinuation of further development with this architecture.
+
+### Citation
+If you find our work worth citing, please use the following citation:<br>
+**Technical Report:**<br>
+Coming soon...<br>
+**Qwen2.5-7B-Instruct:**
+```
+@misc{qwen2.5,
+    title = {Qwen2.5: A Party of Foundation Models},
+    url = {https://qwenlm.github.io/blog/qwen2.5/},
+    author = {Qwen Team},
+    month = {September},
+    year = {2024}
+}
 ```

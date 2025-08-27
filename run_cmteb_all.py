@@ -107,7 +107,7 @@ if __name__ == "__main__":
     model.model.eval()
     print('MODEL_NAME: ', args.model_name_or_path)
     benchmark = mteb.get_benchmark("MTEB(cmn, v1)")
-    evaluation = mteb.MTEB(tasks=['AFQMC'])
+    evaluation = mteb.MTEB(tasks=benchmark)
     evaluation.run(model, output_folder=args.output_dir)
 
     ### Select tasks to run individually. 

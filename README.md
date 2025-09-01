@@ -46,7 +46,7 @@ We provide detailed parameters and environment configurations so that you can ru
 - Datasets: 3.2.0
 - Tokenizers: 0.21.2
 - mteb: 1.38.30
-- vllm:0.10.1.1
+- vllm: 0.10.1.1
 
 #### Transformers model load arguments
 torch_dtype=torch.bfloat16<br>
@@ -167,11 +167,7 @@ scores = (embeddings[:2] @ embeddings[2:].T)
 ```
 ### vLLM
 ```py
-import torch
-import vllm
 from vllm import LLM
-import torch.nn.functional as F
-from transformers import AutoTokenizer, AutoModel
 
 def get_detailed_instruct(task_description: str, query: str) -> str:
     return f'Instruct: {task_description}\nQuery:{query}'

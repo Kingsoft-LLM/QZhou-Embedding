@@ -14,9 +14,10 @@ tags:
 
 
 ## Introduction
-We present <a href="https://huggingface.co/Kingsoft-LLM/QZhou-Embedding">QZhou-Embedding</a> (called "Qingzhou Embedding"), a general-purpose contextual text embedding model with exceptional text representation capabilities. Built upon the <a href="https://huggingface.co/Qwen/Qwen2.5-7B-Instruct">Qwen2.5-7B-Instruct</a> foundation model, we designed a unified multi-task framework and developed a data synthesis pipeline leveraging LLM APIs, effectively improving the diversity and quality of training data, further enhancing the model's generalization and text representation capabilities. Additionally, we employ a two-stage training strategy, comprising initial retrieval-focused training followed by full-task fine-tuning, enabling the embedding model to extend its capabilities based on robust retrieval performance. Our model achieves state-of-the-art results on the MTEB and CMTEB benchmarks, ranking first on both leaderboards(August 27, 2025).
+We present <a href="https://huggingface.co/Kingsoft-LLM/QZhou-Embedding">QZhou-Embedding</a> (called "Qingzhou Embedding"), a general-purpose contextual text embedding model with exceptional text representation capabilities. Built upon the <a href="https://huggingface.co/Qwen/Qwen2.5-7B-Instruct">Qwen2.5-7B-Instruct</a> foundation model, we designed a unified multi-task framework and developed a data synthesis pipeline leveraging LLM API, effectively improving the diversity and quality of training data, further enhancing the model's generalization and text representation capabilities. Additionally, we employ a two-stage training strategy, comprising initial retrieval-focused training followed by full-task fine-tuning, enabling the embedding model to extend its capabilities based on robust retrieval performance. Our model achieves state-of-the-art results on the MTEB and CMTEB benchmarks, ranking first on both leaderboards(August 27, 2025).
 
-**<span style="color:red">We will promptly release our technical report—stay tuned!</span>**  
+**<span style="color:green">Our technical report has now been released. Welcome your feedback！</span>**  
+​​Link:​​ <a href="https://arxiv.org/abs/2508.21632">[QZhou-Embedding](https://arxiv.org/abs/2508.21632)</a>
 
 ## Basic Features
 
@@ -30,7 +31,7 @@ For the Qwen base model, we implemented the following modifications:
 2. Modified the tokenizer's padding_side to "left".
 
 ## MTEB/CMTEB Results
-<img src="assets/image-2.png" width="500" height="300"></img>
+<img src="assets/image-2.png" width="800" height="300"></img>
 
 
 ## Usage
@@ -171,7 +172,16 @@ Our initial research experiments commenced prior to the release of Qwen3. To mai
 ### Citation
 If you find our work worth citing, please use the following citation:<br>
 **Technical Report:**<br>
-Coming soon...<br>
+@misc{yu2025qzhouembeddingtechnicalreport,
+      title={QZhou-Embedding Technical Report}, 
+      author={Peng Yu and En Xu and Bin Chen and Haibiao Chen and Yinfei Xu},
+      year={2025},
+      eprint={2508.21632},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2508.21632}, 
+}<br>
+
 **Qwen2.5-7B-Instruct:**
 ```
 @misc{qwen2.5,

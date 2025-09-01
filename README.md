@@ -16,8 +16,9 @@ tags:
 ## Introduction
 We present <a href="https://huggingface.co/Kingsoft-LLM/QZhou-Embedding">QZhou-Embedding</a> (called "Qingzhou Embedding"), a general-purpose contextual text embedding model with exceptional text representation capabilities. Built upon the <a href="https://huggingface.co/Qwen/Qwen2.5-7B-Instruct">Qwen2.5-7B-Instruct</a> foundation model, we designed a unified multi-task framework and developed a data synthesis pipeline leveraging LLM API, effectively improving the diversity and quality of training data, further enhancing the model's generalization and text representation capabilities. Additionally, we employ a two-stage training strategy, comprising initial retrieval-focused training followed by full-task fine-tuning, enabling the embedding model to extend its capabilities based on robust retrieval performance. Our model achieves state-of-the-art results on the MTEB and CMTEB benchmarks, ranking first on both leaderboards(August 27, 2025).
 
-**<span style="font-size: 18px; color:green">Our technical report has now been released. Welcome your feedback！</span>** ​​Link:​​ <a href="https://arxiv.org/abs/2508.21632">[QZhou-Embedding](https://arxiv.org/abs/2508.21632)</a>
-
+**<span style="font-size: 18px; color:green">Latest Updates:</span>**<br>
+**1. Our technical report has now been released. Welcome your feedback！** ​​Link:​​ <a href="https://arxiv.org/abs/2508.21632">[QZhou-Embedding](https://arxiv.org/abs/2508.21632)</a><br>
+**2. We have added support for vLLM.**
 ## Basic Features
 
 - Powerful text embedding capabilities；
@@ -45,6 +46,8 @@ We provide detailed parameters and environment configurations so that you can ru
 - Datasets: 3.2.0
 - Tokenizers: 0.21.2
 - mteb: 1.38.30
+- vllm:0.10.1.1
+
 #### Transformers model load arguments
 torch_dtype=torch.bfloat16<br>
 attn_implementation='sdpa'<br>
@@ -162,6 +165,32 @@ embeddings = mean_pool(outputs.last_hidden_state, batch_dict['attention_mask'])
 embeddings = F.normalize(embeddings, p=2, dim=1)
 scores = (embeddings[:2] @ embeddings[2:].T)
 ```
+### vLLM
+```py
+import torch
+import vllm
+from vllm import LLM
+import torch.nn.functional as F
+from transformers import AutoTokenizer, AutoModel
+
+def get_detailed_instruct(task_description: str, query: str) -> str:
+    return f'Instruct: {task_description}\nQuery:{query}'
+
+task = 'Given a web search query, retrieve relevant passages that answer the query'
+queries = [
+    get_detailed_instruct(task, 'What is photosynthesis?'),
+    get_detailed_instruct(task, 'Who invented the telephone?')
+]
+documents = [
+    "Photosynthesis is the process by which green plants use sunlight, carbon dioxide, and water to produce glucose and oxygen. This biochemical reaction occurs in chloroplasts.",
+    "Alexander Graham Bell is credited with inventing the first practical telephone in 1876, receiving US patent number 174,465 for his device."
+]
+
+input_texts = queries + documents
+model = LLM(model="Kingsoft-LLM/QZhou-Embedding")
+outputs = model.embed(input_texts)
+```
+
 ### FAQs
 **1. Does the model support MRL?**<br>
 The model currently does not support MRL in this release due to observed performance degradation.<br>

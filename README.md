@@ -186,14 +186,14 @@ documents = [
 input_texts = queries + documents
 model = LLM(model="Kingsoft-LLM/QZhou-Embedding")
 outputs = model.embed(input_texts)
-scores = [F.normalize(torch.tensor(x.outputs.embedding), p=2, dim=0) for x in outputs]
+outputs = [F.normalize(torch.tensor(x.outputs.embedding), p=2, dim=0) for x in outputs]
 ```
 
 ### FAQs
 **1. Does the model support MRL?**<br>
 The model currently does not support MRL in this release due to observed performance degradation.<br>
 **2. Why not build upon the Qwen3 series models?**<br>
-Our initial research experiments commenced prior to the release of Qwen3. To maintain our experimental consistency, we retained the original base model throughout the study😊😊😊. While we subsequently conducted first-stage (retrieval) training with Qwen3, the performance after 32k steps showed no significant improvement over Qwen2.5, leading to discontinuation of further development with this architecture.
+Our initial research experiments commenced prior to the release of Qwen3. We retained the original base model throughout the study to maintain our experimental consistency. While we subsequently conducted first-stage (retrieval) training with Qwen3, the performance after 32k steps showed no significant improvement over Qwen2.5, leading to discontinuation of further development with this architecture.
 
 ### Citation
 If you find our work worth citing, please use the following citation:<br>

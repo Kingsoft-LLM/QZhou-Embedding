@@ -31,7 +31,7 @@ For the Qwen base model, we implemented the following modifications:
 2. Modified the tokenizer's padding_side to "left".
 
 ## MTEB/CMTEB Results
-<img src="assets/image-2.png" width="600" height="300"></img>
+<img src="assets/image-2.png" width="500" height="400"></img>
 
 
 ## Usage

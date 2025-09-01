@@ -168,6 +168,7 @@ scores = (embeddings[:2] @ embeddings[2:].T)
 ### vLLM
 ```py
 from vllm import LLM
+import torch.nn.functional as F
 
 def get_detailed_instruct(task_description: str, query: str) -> str:
     return f'Instruct: {task_description}\nQuery:{query}'
@@ -185,6 +186,7 @@ documents = [
 input_texts = queries + documents
 model = LLM(model="Kingsoft-LLM/QZhou-Embedding")
 outputs = model.embed(input_texts)
+scores = [F.normalize(torch.tensor(x.outputs.embedding), p=2, dim=0) for x in outputs]
 ```
 
 ### FAQs

@@ -35,7 +35,7 @@ For the Qwen base model, we implemented the following modifications:
 
 
 ## Usage
-### Completely reproduce the benchmark results
+### Completely replicate the benchmark results
 We provide detailed parameters and environment configurations so that you can run results that are completely consistent with the mteb leaderboard on your own machine, including configurations such as environment dependencies and model arguments.
 #### Requirements
 - Python: 3.10.12

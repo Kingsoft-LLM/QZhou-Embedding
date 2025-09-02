@@ -6,8 +6,6 @@ import numpy as np
 import json
 import torch
 
-import numpy as np
-
 from embedder import General_Embedder
 
 instruction_map = {

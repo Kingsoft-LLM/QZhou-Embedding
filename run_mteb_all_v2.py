@@ -15,7 +15,7 @@ def get_detailed_instruct(instruction: str) -> str:
 
 query_passage_instruction = ['AmazonCounterfactualClassification', 'ArXivHierarchicalClusteringP2P', 'ArXivHierarchicalClusteringS2S', \
     'BIOSSES', 'Banking77Classification', 'BiorxivClusteringP2P.v2', 'ImdbClassification', 'MTOPDomainClassification', \
-    'MassiveIntentClassification', 'MassiveScenarioClassification', 'MedrxivClusteringP2P', 'MedrxivClusteringS2S', \
+    'MassiveIntentClassification', 'MassiveScenarioClassification', 'MedrxivClusteringP2P.v2', 'MedrxivClusteringS2S.v2', \
     'SICK-R', 'STS12', 'STS13', 'STS14', 'STS15', 'STS17', 'STS22.v2', 'STSBenchmark', 'SprintDuplicateQuestions', \
     'StackExchangeClustering.v2', 'StackExchangeClusteringP2P.v2', 'ToxicConversationsClassification', \
     'TweetSentimentExtractionClassification', 'TwentyNewsgroupsClustering.v2', 'TwitterSemEval2015', 'TwitterURLCorpus', 'AskUbuntuDupQuestions', 'MindSmallReranking', \
@@ -24,7 +24,7 @@ query_passage_instruction = ['AmazonCounterfactualClassification', 'ArXivHierarc
 all_mteb_tasks = ['AmazonCounterfactualClassification', 'ArXivHierarchicalClusteringP2P', 'ArXivHierarchicalClusteringS2S', 'ArguAna', 'AskUbuntuDupQuestions', \
                 'BIOSSES', 'Banking77Classification', 'BiorxivClusteringP2P.v2', 'CQADupstackGamingRetrieval', 'CQADupstackUnixRetrieval', \
                 'ClimateFEVERHardNegatives', 'FEVERHardNegatives', 'FiQA2018', 'HotpotQAHardNegatives', 'ImdbClassification', 'MTOPDomainClassification', \
-                'MedrxivClusteringP2P', 'MedrxivClusteringS2S', 'MindSmallReranking', \
+                'MedrxivClusteringP2P.v2', 'MedrxivClusteringS2S.v2', 'MindSmallReranking', \
                 'SCIDOCS', 'SICK-R', 'STS12', 'STS13', 'STS14', 'STS15', 'STS17', 'STS22.v2', 'STSBenchmark', 'SprintDuplicateQuestions', \
                 'StackExchangeClustering.v2', 'StackExchangeClusteringP2P.v2', 'SummEvalSummarization.v2', 'TRECCOVID', 'ToxicConversationsClassification', \
                 'TweetSentimentExtractionClassification', 'TwentyNewsgroupsClustering.v2', 'TwitterSemEval2015', 'TwitterURLCorpus', 'Touche2020Retrieval.v3', \
